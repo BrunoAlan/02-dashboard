@@ -21,10 +21,11 @@ export const Sidebar = () => {
                     <span>
                         <Image
                             className='rounded-full w-8 h-8'
-                            src='https://images.unsplash.com/photo-1542909168-82c3e7fdca5c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=128&q=80'
+                            src='https://images.unsplash.com/photo-1542909168-82c3e7fdca5c'
                             alt=''
-                            width={80}
-                            height={80}
+                            width={50}
+                            height={50}
+                            loading='lazy'
                         />
                     </span>
                     <span className='text-sm md:text-base font-bold'>
