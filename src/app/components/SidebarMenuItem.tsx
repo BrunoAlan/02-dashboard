@@ -15,13 +15,13 @@ export const SidebarMenuItem = ({
     title,
     subtitle,
 }: SidebarMenuItemProps) => {
-    const pathname = usePathname();
+    const currentPath = usePathname();
 
     return (
         <Link
             href={path}
             className={`w-full px-2 inline-flex space-x-2 items-center border-b border-slate-700 py-3 ${
-                pathname === path && 'bg-blue-800'
+                currentPath === path && 'bg-blue-800'
             } hover:bg-white/5 transition ease-linear duration-150`}
         >
             <div>{icon}</div>
