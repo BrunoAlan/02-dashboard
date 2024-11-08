@@ -28,7 +28,7 @@ export const Sidebar = () => {
                         />
                     </span>
                     <span className='text-sm md:text-base font-bold'>
-                        Edward Tompson
+                        Alancito
                     </span>
                 </a>
             </div>
