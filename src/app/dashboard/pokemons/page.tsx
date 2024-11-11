@@ -16,6 +16,11 @@ const getPokemon = async ({
     return pokemons;
 };
 
+export const metadata = {
+    title: '151 Pokemon List',
+    description: 'List of 151 pokemons',
+};
+
 export default async function PokemonsPage() {
     const pokemons = await getPokemon({ limit: 100 });
     return (
