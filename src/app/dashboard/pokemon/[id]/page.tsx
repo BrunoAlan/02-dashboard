@@ -4,12 +4,19 @@ import Image from 'next/image';
 import { notFound } from 'next/navigation';
 
 interface Props {
-    params: { id: string };
+    params: Promise<{ id: string }>;
+}
+
+export async function generateStaticParams() {
+    const static151Pokemons = Array.from({ length: 151 }, (_, i) => ({
+        id: String(i + 1),
+    }));
+    return static151Pokemons;
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
     try {
-        const { id, name } = await getPokemon(params.id);
+        const { id, name } = await getPokemon((await params).id);
         return {
             title: `#${id} - ${name}`,
             description: `Pokemon ${name} page`,
@@ -26,6 +33,9 @@ const getPokemon = async (id: string): Promise<Pokemon> => {
     try {
         const pokemon = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`, {
             cache: 'force-cache',
+            // next: {
+            //     revalidate: 60 * 60 * 30 * 24,
+            // },
         }).then((response) => response.json());
         return pokemon;
     } catch {
@@ -34,7 +44,7 @@ const getPokemon = async (id: string): Promise<Pokemon> => {
 };
 
 export default async function PokemonPage({ params }: Props) {
-    const pokemon = await getPokemon(params.id);
+    const pokemon = await getPokemon((await params).id);
 
     return (
         <div className='flex mt-5 flex-col items-center text-slate-800'>
