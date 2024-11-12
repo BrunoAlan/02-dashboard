@@ -10,13 +10,22 @@ import { useEffect } from 'react';
 interface Props {
     value?: number;
 }
+
+const getApiCounter = async () => {
+    const data = await fetch('/api/counter').then((res) => res.json());
+    return data.count;
+};
 export const CartCounter = ({ value = 0 }: Props) => {
     const count = useAppSelector((state) => state.counter.count);
     const dispatch = useAppDispatch();
 
+    // useEffect(() => {
+    //     dispatch(initCounterState(value));
+    // }, [dispatch, value]);
+
     useEffect(() => {
-        dispatch(initCounterState(value));
-    }, [dispatch, value]);
+        getApiCounter().then((data) => dispatch(initCounterState(data)));
+    }, [dispatch]);
 
     return (
         <>
