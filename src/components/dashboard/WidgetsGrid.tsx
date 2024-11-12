@@ -12,7 +12,7 @@ export const WidgetsGrid = () => {
                 title={counter.toString()}
                 subtitle='Shopping cart items'
                 label='Counter'
-                icon={<IoCartOutline size={40} className='text-blue-600' />}
+                icon={<IoCartOutline size={70} className='text-blue-600' />}
                 href='/dashboard/counter'
             />
         </div>
