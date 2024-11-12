@@ -26,6 +26,6 @@ const counterSlice = createSlice({
     },
 });
 
-export const {} = counterSlice.actions;
+export const { addOne, subtractOne, resetCounter } = counterSlice.actions;
 
 export default counterSlice.reducer;
