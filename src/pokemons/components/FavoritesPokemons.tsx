@@ -24,6 +24,6 @@ export const FavoritesPokemons = () => {
 export const NoFavorites = () => (
     <div className='flex flex-col h-[50vh] items-center justify-center'>
         <IoHeartOutline size={100} className='text-red-500' />
-        <span className='text-2xl text-gray-500'>No favorites Pokemons</span>
+        <span className='text-lg text-gray-500'>No favorites Pokemons</span>
     </div>
 );
