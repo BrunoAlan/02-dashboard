@@ -5,9 +5,7 @@ interface PokemonsState {
     [key: string]: SimplePlokemon;
 }
 
-const initialState: PokemonsState = {
-    '1': { id: '1', name: 'bulbasaur' },
-};
+const initialState: PokemonsState = {};
 
 const pokemonSlice = createSlice({
     name: 'pokemons',
