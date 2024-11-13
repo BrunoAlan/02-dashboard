@@ -1,14 +1,17 @@
+'use client';
 import Link from 'next/link';
 import type { SimplePlokemon } from '../interfaces/simple-pokemon';
 import Image from 'next/image';
-import { IoHeartOutline } from 'react-icons/io5';
+import { IoHeartOutline, IoHeart } from 'react-icons/io5';
+import { useAppSelector } from '@/store';
 
 interface Props {
     pokemon: SimplePlokemon;
 }
 
 export const PokemonCard = ({ pokemon }: Props) => {
-    const { name } = pokemon;
+    const { id, name } = pokemon;
+    const isFavorite = useAppSelector((state) => !!state.pokemons[id]);
     return (
         <div className='mx-auto right-0 mt-2 w-60'>
             <div className='flex flex-col bg-white rounded overflow-hidden shadow-lg'>
@@ -40,11 +43,11 @@ export const PokemonCard = ({ pokemon }: Props) => {
                         className='px-4 py-2 hover:bg-gray-100 flex items-center '
                     >
                         <div className='text-red-600'>
-                            <IoHeartOutline />
+                            {isFavorite ? <IoHeart /> : <IoHeartOutline />}
                         </div>
                         <div className='pl-3'>
                             <p className='text-sm font-medium text-gray-800 leading-none'>
-                                Set as favorite
+                                {isFavorite ? 'Is favorite' : 'Set as favorite'}
                             </p>
                             <p className='text-xs text-gray-500'>
                                 View your campaigns
