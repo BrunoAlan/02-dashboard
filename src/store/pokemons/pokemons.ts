@@ -5,7 +5,16 @@ interface PokemonsState {
     [key: string]: SimplePlokemon;
 }
 
-const initialState: PokemonsState = {};
+const getInitialState = (): PokemonsState => {
+    const favorites = JSON.parse(
+        localStorage.getItem('favorite-pokemons') ?? '{}'
+    );
+    return favorites;
+};
+
+const initialState: PokemonsState = {
+    ...getInitialState(),
+};
 
 const pokemonSlice = createSlice({
     name: 'pokemons',
@@ -15,9 +24,12 @@ const pokemonSlice = createSlice({
             const { id } = action.payload;
             if (!!state[id]) {
                 delete state[id];
-                return;
+            } else {
+                state[id] = action.payload;
             }
-            state[id] = action.payload;
+
+            //TODO: remove it, is a bad practice to use localStorage in reducers
+            localStorage.setItem('favorite-pokemons', JSON.stringify(state));
         },
     },
 });
